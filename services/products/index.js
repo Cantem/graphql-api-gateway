@@ -14,7 +14,7 @@ const typeDefs = gql`
 
   extend type Query {
     product(id: ID!): Product
-    products: [Product]
+    products: [Product!]!
   }
 `;
 

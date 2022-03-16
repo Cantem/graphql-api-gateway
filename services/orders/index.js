@@ -20,7 +20,7 @@ const typeDefs = gql`
 
   extend type Query {
     order(id: ID!): Order
-    orders: [Order]
+    orders: [Order!]!
   }
 `;
 
