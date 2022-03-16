@@ -1,0 +1,49 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "MS office subscription - 1 year",
+      "price": "£50"
+    },
+    {
+      "id": 2,
+      "name": "MS office subscription - 6 months",
+      "price": "£30"
+    },
+    {
+      "id": 3,
+      "name": "MS office subscription - 1 months",
+      "price": "£20"
+    },
+    {
+      "id": 4,
+      "name": "My tool software",
+      "price": "£200"
+    },
+    {
+      "id": 5,
+      "name": "Conference ticket",
+      "price": "£99"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "productList": [1, 4, 5],
+      "status": "complete",
+      "createdAt": "2022-01-11T15:02:45.000Z"
+    },
+    {
+      "id": 2,
+      "productList": [1],
+      "status": "abandoned",
+      "createdAt": "2022-01-11T15:02:45.000Z"
+    },
+    {
+      "id": 2,
+      "productList": [],
+      "status": "in progress",
+      "createdAt": "2022-01-11T15:02:45.000Z"
+    }
+  ]
+}

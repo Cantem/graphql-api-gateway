@@ -1,0 +1,17 @@
+{
+  "name": "products",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@apollo/federation": "^0.14.1",
+    "apollo-server": "^2.12.0",
+    "graphql": "^15.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
