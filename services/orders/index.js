@@ -37,15 +37,15 @@ const resolvers = {
   },
   Order: {
     productList(order) {
-      return order.productList.map((id) => ({ __typename: "Product", id }));
+      return order.productList.map((id) => ({ __typename: "Order", id }));
     },
   },
   Query: {
-    product(_, { id }) {
-      return fetch(`${baseUrl}/products/${id}`).then((res) => res.json());
+    order(_, { id }) {
+      return fetch(`${baseUrl}/orders/${id}`).then((res) => res.json());
     },
-    products() {
-      return fetch(`${baseUrl}/products`).then((res) => res.json());
+    orders() {
+      return fetch(`${baseUrl}/orders`).then((res) => res.json());
     },
   },
 };
