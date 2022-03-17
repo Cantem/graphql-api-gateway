@@ -1,9 +1,9 @@
 const { ApolloServer, gql } = require("apollo-server");
 const { buildFederatedSchema } = require("@apollo/federation");
 const fetch = require("node-fetch");
+const { baseUrl } = require("../../constants");
 
 const port = 4001;
-const baseUrl = "http://localhost:3000";
 
 const typeDefs = gql`
   type Product @key(fields: "id") {
@@ -39,5 +39,5 @@ const server = new ApolloServer({
 });
 
 server.listen({ port }).then(({ url }) => {
-  console.log(`Products service running at ${url}`);
+  console.log(`🚀 Products service running at ${url}`);
 });
