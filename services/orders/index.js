@@ -55,5 +55,5 @@ const server = new ApolloServer({
 });
 
 server.listen({ port }).then(({ url }) => {
-  console.log(`Products service running at ${url}`);
+  console.log(`Orders service running at ${url}`);
 });
