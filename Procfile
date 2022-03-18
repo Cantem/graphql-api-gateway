@@ -1,0 +1,1 @@
+web: concurrently -k npm:server:*
