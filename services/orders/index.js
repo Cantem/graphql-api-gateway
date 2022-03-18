@@ -1,9 +1,10 @@
-const { ApolloServer, gql } = require("apollo-server");
-const { buildFederatedSchema } = require("@apollo/federation");
-const fetch = require("node-fetch");
-const { baseUrl } = require("../../constants");
+import { ApolloServer, gql } from "apollo-server";
+import { buildFederatedSchema } from "@apollo/federation";
+import fetch from "node-fetch";
+import chalk from "chalk";
 
 const port = 4002;
+const baseUrl = "http://localhost:3000";
 
 const typeDefs = gql`
   type Order {
@@ -55,5 +56,5 @@ const server = new ApolloServer({
 });
 
 server.listen({ port }).then(({ url }) => {
-  console.log(`🚀 Orders service running at ${url}`);
+  console.log(chalk.blue(`🚀 Orders service running at ${url}`));
 });

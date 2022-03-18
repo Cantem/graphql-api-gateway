@@ -1,31 +1,31 @@
-const { ApolloServer } = require("apollo-server");
-const { ApolloGateway, IntrospectAndCompose } = require("@apollo/gateway");
+import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
+import { ApolloGateway, IntrospectAndCompose } from "@apollo/gateway";
+import express from "express";
+import http from "http";
+import chalk from "chalk";
 
-const port = 4000;
+async function startApolloServer() {
+  const app = express();
+  const httpServer = http.createServer(app);
 
-// previous implementation
-// const gateway = new ApolloGateway({
-//   serviceList: [
-//     { name: "products", url: "http://localhost:4001" },
-//     { name: "orders", url: "http://localhost:4002" },
-//   ],
-// });
-
-const gateway = new ApolloGateway({
-  supergraphSdl: new IntrospectAndCompose({
-    subgraphs: [
+  const gateway = new ApolloGateway({
+    serviceList: [
       { name: "products", url: "http://localhost:4001" },
       { name: "orders", url: "http://localhost:4002" },
     ],
-  }),
-  serviceHealthCheck: true,
-});
+  });
 
-const server = new ApolloServer({
-  gateway,
-  subscriptions: false,
-});
+  const server = new ApolloServer({
+    gateway,
+    subscriptions: false,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  });
 
-server.listen({ port }).then(({ url }) => {
-  console.log(`🚀 API Gateway ready at ${url}`);
-});
+  await server.start();
+  server.applyMiddleware({ app });
+  await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+}
+
+startApolloServer();
