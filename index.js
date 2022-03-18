@@ -10,10 +10,13 @@ async function startApolloServer() {
   const httpServer = http.createServer(app);
 
   const gateway = new ApolloGateway({
-    serviceList: [
-      { name: "products", url: "http://localhost:4001" },
-      { name: "orders", url: "http://localhost:4002" },
-    ],
+    supergraphSdl: new IntrospectAndCompose({
+      subgraphs: [
+        { name: "products", url: "http://localhost:4001" },
+        { name: "orders", url: "http://localhost:4002" },
+      ],
+    }),
+    serviceHealthCheck: true,
   });
 
   const server = new ApolloServer({
